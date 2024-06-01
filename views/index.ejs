@@ -5,6 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/css/styles.css">
   <title>Localizer Mopiens</title>
+  <style>
+    /* Additional styles for input constraints */
+    input[type="text"].battery-input::placeholder {
+      color: gray;
+      opacity: 0.8;
+    }
+    input[type="text"].temp-input::placeholder {
+      color: gray;
+      opacity: 0.8;
+    }
+  </style>
 </head>
 <body>
   <div class="container">
@@ -20,21 +31,39 @@
     <div class="main-content">
       <form action="/submit" method="POST">
         <label for="date">Date:</label>
-        <input type="text" id="date" name="date"><br>
+        <input type="datetime-local" id="date" name="date"><br>
+        
         <label for="tx1">TX1:</label>
-        <input type="text" id="tx1" name="tx1"><br>
+        <select id="tx1" name="tx1">
+          <option value="ON">ON</option>
+          <option value="ON LOAD">ON LOAD</option>
+          <option value="ON ANTENNA">ON ANTENNA</option>
+          <option value="OFF">OFF</option>
+        </select><br>
+        
         <label for="tx2">TX2:</label>
-        <input type="text" id="tx2" name="tx2"><br>
+        <select id="tx2" name="tx2">
+          <option value="ON">ON</option>
+          <option value="ON LOAD">ON LOAD</option>
+          <option value="ON ANTENNA">ON ANTENNA</option>
+          <option value="OFF">OFF</option>
+        </select><br>
+        
         <label for="battery1">Battery 1:</label>
-        <input type="text" id="battery1" name="battery1"><br>
+        <input type="text" id="battery1" name="battery1" class="battery-input" placeholder="e.g. 23.12 V" pattern="\d+(\.\d{1,2})? V"><br>
+        
         <label for="battery2">Battery 2:</label>
-        <input type="text" id="battery2" name="battery2"><br>
+        <input type="text" id="battery2" name="battery2" class="battery-input" placeholder="e.g. 23.12 V" pattern="\d+(\.\d{1,2})? V"><br>
+        
         <label for="temp">Temp:</label>
-        <input type="text" id="temp" name="temp"><br>
+        <input type="text" id="temp" name="temp" class="temp-input" placeholder="e.g. 25.5 C" pattern="\d+(\.\d{1,2})? C"><br>
+        
         <label for="technician">Technician:</label>
         <input type="text" id="technician" name="technician"><br>
+        
         <label for="note">Additional Note:</label>
         <textarea id="note" name="note"></textarea><br>
+        
         <button type="submit">Submit</button>
       </form>
       <table>
@@ -67,5 +96,13 @@
       </table>
     </div>
   </div>
+  <script>
+    // JavaScript to add 'C' to the end of Temp input value if not already present
+    document.getElementById('temp').addEventListener('input', function() {
+      if (!this.value.endsWith(' C')) {
+        this.value = this.value.replace(/[^0-9.]/g, '') + ' C';
+      }
+    });
+  </script>
 </body>
 </html>
