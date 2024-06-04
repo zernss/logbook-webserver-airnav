@@ -20,9 +20,7 @@
     <div class="main-content">
       <form action="/submit" method="POST">
         <label for="date">Date:</label>
-        <input type="date" id="date" name="date" required><br>
-        <label for="time">Time:</label>
-        <input type="time" id="time" name="time" required><br>
+        <input type="datetime-local" id="date" name="date"><br>
         <label for="tx1">TX1:</label>
         <select id="tx1" name="tx1" required>
           <option value="ON">ON</option>
@@ -53,7 +51,6 @@
         <thead>
           <tr>
             <th>Date</th>
-            <th>Time</th>
             <th>TX1</th>
             <th>TX2</th>
             <th>Battery 1</th>
@@ -67,7 +64,6 @@
           <% logs.forEach(log => { %>
             <tr>
               <td><%= log.date %></td>
-              <td><%= log.time %></td>
               <td><%= log.tx1 %></td>
               <td><%= log.tx2 %></td>
               <td><%= log.battery1 %></td>
