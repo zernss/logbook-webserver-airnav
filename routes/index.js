@@ -9,7 +9,16 @@ router.get('/', async (req, res) => {
 
 router.post('/submit', async (req, res) => {
   const { date, tx1, tx2, battery1, battery2, temp, technician, note } = req.body;
-  const log = new Log({ date, tx1, tx2, battery1, battery2, temp, technician, note });
+  const log = new Log({
+    date,
+    tx1,
+    tx2,
+    battery1: `${battery1}V`,
+    battery2: `${battery2}V`,
+    temp: `${temp}C`,
+    technician,
+    note
+  });
   await log.save();
   res.redirect('/');
 });
