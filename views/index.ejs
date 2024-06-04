@@ -20,29 +20,31 @@
     <div class="main-content">
       <form action="/submit" method="POST">
         <label for="date">Date:</label>
-        <input type="text" id="date" name="date"><br>
+        <input type="date" id="date" name="date" required><br>
+        <label for="time">Time:</label>
+        <input type="time" id="time" name="time" required><br>
         <label for="tx1">TX1:</label>
-        <select id="tx1" name="tx1">
+        <select id="tx1" name="tx1" required>
           <option value="ON">ON</option>
           <option value="ON LOAD">ON LOAD</option>
           <option value="ON ANTENNA">ON ANTENNA</option>
           <option value="OFF">OFF</option>
         </select><br>
         <label for="tx2">TX2:</label>
-        <select id="tx2" name="tx2">
+        <select id="tx2" name="tx2" required>
           <option value="ON">ON</option>
           <option value="ON LOAD">ON LOAD</option>
           <option value="ON ANTENNA">ON ANTENNA</option>
           <option value="OFF">OFF</option>
         </select><br>
         <label for="battery1">Battery 1:</label>
-        <input type="number" id="battery1" name="battery1" step="0.1"><br>
+        <input type="number" id="battery1" name="battery1" step="0.1" required><br>
         <label for="battery2">Battery 2:</label>
-        <input type="number" id="battery2" name="battery2" step="0.1"><br>
+        <input type="number" id="battery2" name="battery2" step="0.1" required><br>
         <label for="temp">Temp:</label>
-        <input type="number" id="temp" name="temp" step="0.1"><br>
+        <input type="number" id="temp" name="temp" step="0.1" required><br>
         <label for="technician">Technician:</label>
-        <input type="text" id="technician" name="technician"><br>
+        <input type="text" id="technician" name="technician" required><br>
         <label for="note">Additional Note:</label>
         <textarea id="note" name="note"></textarea><br>
         <button type="submit">Submit</button>
@@ -51,6 +53,7 @@
         <thead>
           <tr>
             <th>Date</th>
+            <th>Time</th>
             <th>TX1</th>
             <th>TX2</th>
             <th>Battery 1</th>
@@ -64,6 +67,7 @@
           <% logs.forEach(log => { %>
             <tr>
               <td><%= log.date %></td>
+              <td><%= log.time %></td>
               <td><%= log.tx1 %></td>
               <td><%= log.tx2 %></td>
               <td><%= log.battery1 %></td>
