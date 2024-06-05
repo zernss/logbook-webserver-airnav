@@ -1,15 +1,15 @@
 const mongoose = require('mongoose');
 
 const logSchema = new mongoose.Schema({
-  logType: String,
-  date: String,
-  tx1: String,
-  tx2: String,
-  battery1: String,
-  battery2: String,
-  temp: String,
-  technician: String,
-  note: String
+  date: { type: Date, required: true },
+  tx1: { type: String, required: true },
+  tx2: { type: String, required: true },
+  battery1: { type: Number, required: true },
+  battery2: { type: Number, required: true },
+  temp: { type: Number, required: true },
+  technician: { type: String, required: true },
+  note: { type: String },
+  logType: { type: String, required: true }
 });
 
 module.exports = mongoose.model('Log', logSchema);
