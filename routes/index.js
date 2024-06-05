@@ -1,6 +1,11 @@
 var express = require('express');
 var router = express.Router();
-var Log = require('../models/Log.js');
+var Log = require('../models/log');
+
+router.get('/', async (req, res) => {
+  const logs = await Log.find();
+  res.render('index', { logs });
+});
 
 router.post('/submit/localizer', function(req, res, next) {
   var logData = {
@@ -114,6 +119,24 @@ router.post('/submit/selexmiddlemarker', function(req, res, next) {
     if (err) return next(err);
     res.redirect('/');
   });
+});
+
+module.exports = router;
+
+router.post('/submit', async (req, res) => {
+  const { date, tx1, tx2, battery1, battery2, temp, technician, note } = req.body;
+  const log = new Log({ 
+    date, 
+    tx1, 
+    tx2, 
+    battery1: `${parseFloat(battery1).toFixed(2)} V`, 
+    battery2: `${parseFloat(battery2).toFixed(2)} V`, 
+    temp: `${parseFloat(temp).toFixed(2)} C`, 
+    technician, 
+    note 
+  });
+  await log.save();
+  res.redirect('/');
 });
 
 module.exports = router;
