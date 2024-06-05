@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/', require('./routes/index'));
 
 // Start server
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 1025;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
