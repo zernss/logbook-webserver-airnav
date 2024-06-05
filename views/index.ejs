@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/css/styles.css">
-  <title>Localizer Mopiens</title>
+  <title>Logbook</title>
   <style>
     .hidden {
       display: none;
@@ -26,12 +26,18 @@
         <button id="middleMarkerButton">Middle Marker</button>
       </div>
       <button id="selexButton">Selex</button>
+      <div id="selexSubButtons" class="hidden sub-buttons">
+        <button id="selexLocalizerButton">Selex Localizer</button>
+        <button id="selexGlidePathButton">Selex Glide Path</button>
+        <button id="selexMiddleMarkerButton">Selex Middle Marker</button>
+      </div>
       <button id="downloadButton">Download</button>
       <button id="logoutButton">Logout</button>
     </div>
-    <div class="main-content" id="mainContent">
-      <div id="logbookPage">
-        <form action="/submit" method="POST">
+    <div class="main-content">
+      <div id="localizerLog" class="log-page hidden">
+        <h2>Localizer Log</h2>
+        <form action="/submit/localizer" method="POST">
           <label for="date">Date:</label>
           <input type="datetime-local" id="date" name="date" required><br>
           <label for="tx1">TX1:</label>
@@ -60,61 +66,76 @@
           <textarea id="note" name="note"></textarea><br>
           <button type="submit">Submit</button>
         </form>
-        <table>
-          <thead>
-            <tr>
-              <th>Date</th>
-              <th>TX1</th>
-              <th>TX2</th>
-              <th>Battery 1</th>
-              <th>Battery 2</th>
-              <th>Temp</th>
-              <th>Technician</th>
-              <th>Note</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% logs.forEach(log => { %>
-              <tr>
-                <td><%= log.date %></td>
-                <td><%= log.tx1 %></td>
-                <td><%= log.tx2 %></td>
-                <td><%= log.battery1 %></td>
-                <td><%= log.battery2 %></td>
-                <td><%= log.temp %></td>
-                <td><%= log.technician %></td>
-                <td><%= log.note %></td>
-              </tr>
-            <% }) %>
-          </tbody>
-        </table>
+      </div>
+
+      <div id="glidePathLog" class="log-page hidden">
+        <h2>Glide Path Log</h2>
+        <form action="/submit/glidepath" method="POST">
+          <!-- Similar form structure as Localizer -->
+        </form>
+      </div>
+
+      <div id="middleMarkerLog" class="log-page hidden">
+        <h2>Middle Marker Log</h2>
+        <form action="/submit/middlemarker" method="POST">
+          <!-- Similar form structure as Localizer -->
+        </form>
+      </div>
+
+      <div id="selexLocalizerLog" class="log-page hidden">
+        <h2>Selex Localizer Log</h2>
+        <form action="/submit/selexlocalizer" method="POST">
+          <!-- Similar form structure as Localizer -->
+        </form>
+      </div>
+
+      <div id="selexGlidePathLog" class="log-page hidden">
+        <h2>Selex Glide Path Log</h2>
+        <form action="/submit/selexglidepath" method="POST">
+          <!-- Similar form structure as Localizer -->
+        </form>
+      </div>
+
+      <div id="selexMiddleMarkerLog" class="log-page hidden">
+        <h2>Selex Middle Marker Log</h2>
+        <form action="/submit/selexmiddlemarker" method="POST">
+          <!-- Similar form structure as Localizer -->
+        </form>
       </div>
     </div>
   </div>
   <script>
-    document.getElementById('mopiensButton').addEventListener('click', function() {
-      var subButtons = document.getElementById('mopiensSubButtons');
-      if (subButtons.classList.contains('hidden')) {
-        subButtons.classList.remove('hidden');
-      } else {
-        subButtons.classList.add('hidden');
-      }
+    document.getElementById('mopiensButton').addEventListener('click', () => {
+      document.getElementById('mopiensSubButtons').classList.toggle('hidden');
+    });
+    document.getElementById('selexButton').addEventListener('click', () => {
+      document.getElementById('selexSubButtons').classList.toggle('hidden');
     });
 
-    document.getElementById('localizerButton').addEventListener('click', function() {
-      showPage('logbookPage');
+    document.getElementById('localizerButton').addEventListener('click', () => {
+      showLogPage('localizerLog');
+    });
+    document.getElementById('glidePathButton').addEventListener('click', () => {
+      showLogPage('glidePathLog');
+    });
+    document.getElementById('middleMarkerButton').addEventListener('click', () => {
+      showLogPage('middleMarkerLog');
+    });
+    document.getElementById('selexLocalizerButton').addEventListener('click', () => {
+      showLogPage('selexLocalizerLog');
+    });
+    document.getElementById('selexGlidePathButton').addEventListener('click', () => {
+      showLogPage('selexGlidePathLog');
+    });
+    document.getElementById('selexMiddleMarkerButton').addEventListener('click', () => {
+      showLogPage('selexMiddleMarkerLog');
     });
 
-    function showPage(pageId) {
-      var pages = document.querySelectorAll('.main-content > div');
-      pages.forEach(function(page) {
-        page.style.display = 'none';
-      });
-      document.getElementById(pageId).style.display = 'block';
+    function showLogPage(logPageId) {
+      const logPages = document.querySelectorAll('.log-page');
+      logPages.forEach(page => page.classList.add('hidden'));
+      document.getElementById(logPageId).classList.remove('hidden');
     }
-
-    // Initialize to show the logbook page by default
-    showPage('logbookPage');
   </script>
 </body>
 </html>
