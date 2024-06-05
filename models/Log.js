@@ -4,9 +4,9 @@ const logSchema = new mongoose.Schema({
   date: String,
   tx1: String,
   tx2: String,
-  battery1: String,
-  battery2: String,
-  temp: String,
+  battery1: Number,
+  battery2: Number,
+  temp: Number,
   technician: String,
   note: String
 });

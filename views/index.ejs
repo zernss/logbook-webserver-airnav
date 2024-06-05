@@ -20,19 +20,29 @@
     <div class="main-content">
       <form action="/submit" method="POST">
         <label for="date">Date:</label>
-        <input type="text" id="date" name="date"><br>
+        <input type="datetime-local" id="date" name="date" required><br>
         <label for="tx1">TX1:</label>
-        <input type="text" id="tx1" name="tx1"><br>
+        <select id="tx1" name="tx1" required>
+          <option value="ON">ON</option>
+          <option value="ON LOAD">ON LOAD</option>
+          <option value="ON ANTENNA">ON ANTENNA</option>
+          <option value="OFF">OFF</option>
+        </select><br>
         <label for="tx2">TX2:</label>
-        <input type="text" id="tx2" name="tx2"><br>
+        <select id="tx2" name="tx2" required>
+          <option value="ON">ON</option>
+          <option value="ON LOAD">ON LOAD</option>
+          <option value="ON ANTENNA">ON ANTENNA</option>
+          <option value="OFF">OFF</option>
+        </select><br>
         <label for="battery1">Battery 1:</label>
-        <input type="text" id="battery1" name="battery1"><br>
+        <input type="number" id="battery1" name="battery1" required><br>
         <label for="battery2">Battery 2:</label>
-        <input type="text" id="battery2" name="battery2"><br>
+        <input type="number" id="battery2" name="battery2" required><br>
         <label for="temp">Temp:</label>
-        <input type="text" id="temp" name="temp"><br>
+        <input type="number" id="temp" name="temp" required><br>
         <label for="technician">Technician:</label>
-        <input type="text" id="technician" name="technician"><br>
+        <input type="text" id="technician" name="technician" required><br>
         <label for="note">Additional Note:</label>
         <textarea id="note" name="note"></textarea><br>
         <button type="submit">Submit</button>
