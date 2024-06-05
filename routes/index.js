@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var Log = require('../models/log');
+var Log = require('../models/Log.js');
 
 router.post('/submit/localizer', function(req, res, next) {
   var logData = {
