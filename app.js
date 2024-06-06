@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
+const path = require('path');
 
 const app = express();
 const PORT = 1025;
@@ -10,6 +11,9 @@ const PORT = 1025;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
+
+// Serve static HTML files
+app.use(express.static(path.join(__dirname, 'public')));
 
 // MongoDB Connection
 const mongoURI = 'mongodb://localhost:27017/localizer';
@@ -34,11 +38,27 @@ const MopiensLocalizer = mongoose.model('MopiensLocalizer', formSchema);
 const MopiensGlidePath = mongoose.model('MopiensGlidePath', formSchema);
 const MopiensMiddleMarker = mongoose.model('MopiensMiddleMarker', formSchema);
 
-// Routes
+// Serve login page
 app.get('/', (req, res) => {
-    res.send('Welcome to the Logbook Webserver');
+    res.sendFile(path.join(__dirname, 'public', 'login.html'));
 });
 
+// Handle login
+app.post('/login', (req, res) => {
+    const { username, password } = req.body;
+    if (username === 'Teknisi_PLM' && password === 'PLM_AIRNAV') {
+        res.redirect('/main');
+    } else {
+        res.status(401).send('Unauthorized');
+    }
+});
+
+// Serve main page
+app.get('/main', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'main.html'));
+});
+
+// Routes for submitting data
 app.post('/submit/selexlocalizer', async (req, res) => {
     const newEntry = new SelexLocalizer(req.body);
     try {
