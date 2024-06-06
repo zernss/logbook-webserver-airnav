@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Selex Localizer</title>
+</head>
+<body>
+  <h1>Selex Localizer Form</h1>
+  <form action="/submit/selexlocalizer" method="POST">
+    <label for="date">Date:</label>
+    <input type="date" id="date" name="date" required><br>
+
+    <label for="tx1">TX1:</label>
+    <input type="text" id="tx1" name="tx1" required><br>
+
+    <label for="tx2">TX2:</label>
+    <input type="text" id="tx2" name="tx2" required><br>
+
+    <label for="battery1">Battery 1:</label>
+    <input type="number" id="battery1" name="battery1" required><br>
+
+    <label for="battery2">Battery 2:</label>
+    <input type="number" id="battery2" name="battery2" required><br>
+
+    <label for="temp">Temperature:</label>
+    <input type="number" id="temp" name="temp" required><br>
+
+    <label for="technician">Technician:</label>
+    <input type="text" id="technician" name="technician" required><br>
+
+    <label for="note">Note:</label>
+    <textarea id="note" name="note"></textarea><br>
+
+    <button type="submit">Submit</button>
+  </form>
+</body>
+</html>
