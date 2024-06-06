@@ -4,276 +4,78 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/css/styles.css">
-  <title>Logbook</title>
-  <style>
-    .hidden {
-      display: none;
-    }
-    .sub-buttons {
-      margin-left: 20px;
-    }
-  </style>
+  <title>Localizer Mopiens</title>
 </head>
 <body>
   <div class="container">
     <div class="sidebar">
-      <button id="userButton">User</button>
-      <button id="logbookButton">Logbook</button>
-      <button id="mopiensButton">Mopiens</button>
-      <div id="mopiensSubButtons" class="hidden sub-buttons">
-        <button id="localizerButton">Localizer</button>
-        <button id="glidePathButton">Glide Path</button>
-        <button id="middleMarkerButton">Middle Marker</button>
-      </div>
-      <button id="selexButton">Selex</button>
-      <div id="selexSubButtons" class="hidden sub-buttons">
-        <button id="selexLocalizerButton">Selex Localizer</button>
-        <button id="selexGlidePathButton">Selex Glide Path</button>
-        <button id="selexMiddleMarkerButton">Selex Middle Marker</button>
-      </div>
-      <button id="downloadButton">Download</button>
-      <button id="logoutButton">Logout</button>
+      <button>User</button>
+      <button>Logbook</button>
+      <button>Mopiens</button>
+      <button>Localizer</button>
+      <button>Selex</button>
+      <button>Download</button>
+      <button>Logout</button>
     </div>
     <div class="main-content">
-      <div id="localizerLog" class="log-page hidden">
-        <h2>Localizer Log</h2>
-        <form action="/submit/localizer" method="POST">
-          <label for="date">Date:</label>
-          <input type="datetime-local" id="date" name="date" required><br>
-          <label for="tx1">TX1:</label>
-          <select id="tx1" name="tx1" required>
-            <option value="ON">ON</option>
-            <option value="ON LOAD">ON LOAD</option>
-            <option value="ON ANTENNA">ON ANTENNA</option>
-            <option value="OFF">OFF</option>
-          </select><br>
-          <label for="tx2">TX2:</label>
-          <select id="tx2" name="tx2" required>
-            <option value="ON">ON</option>
-            <option value="ON LOAD">ON LOAD</option>
-            <option value="ON ANTENNA">ON ANTENNA</option>
-            <option value="OFF">OFF</option>
-          </select><br>
-          <label for="battery1">Battery 1:</label>
-          <input type="number" step="0.01" id="battery1" name="battery1" required><br>
-          <label for="battery2">Battery 2:</label>
-          <input type="number" step="0.01" id="battery2" name="battery2" required><br>
-          <label for="temp">Temp:</label>
-          <input type="number" step="0.01" id="temp" name="temp" required><br>
-          <label for="technician">Technician:</label>
-          <input type="text" id="technician" name="technician" required><br>
-          <label for="note">Additional Note:</label>
-          <textarea id="note" name="note"></textarea><br>
-          <button type="submit">Submit</button>
-        </form>
-      </div>
-
-      <div id="glidePathLog" class="log-page hidden">
-        <h2>Glide Path Log</h2>
-        <form action="/submit/glidepath" method="POST">
-          <label for="date">Date:</label>
-          <input type="datetime-local" id="date" name="date" required><br>
-          <label for="tx1">TX1:</label>
-          <select id="tx1" name="tx1" required>
-            <option value="ON">ON</option>
-            <option value="ON LOAD">ON LOAD</option>
-            <option value="ON ANTENNA">ON ANTENNA</option>
-            <option value="OFF">OFF</option>
-          </select><br>
-          <label for="tx2">TX2:</label>
-          <select id="tx2" name="tx2" required>
-            <option value="ON">ON</option>
-            <option value="ON LOAD">ON LOAD</option>
-            <option value="ON ANTENNA">ON ANTENNA</option>
-            <option value="OFF">OFF</option>
-          </select><br>
-          <label for="battery1">Battery 1:</label>
-          <input type="number" step="0.01" id="battery1" name="battery1" required><br>
-          <label for="battery2">Battery 2:</label>
-          <input type="number" step="0.01" id="battery2" name="battery2" required><br>
-          <label for="temp">Temp:</label>
-          <input type="number" step="0.01" id="temp" name="temp" required><br>
-          <label for="technician">Technician:</label>
-          <input type="text" id="technician" name="technician" required><br>
-          <label for="note">Additional Note:</label>
-          <textarea id="note" name="note"></textarea><br>
-          <button type="submit">Submit</button>
-        </form>
-      </div>
-
-      <div id="middleMarkerLog" class="log-page hidden">
-        <h2>Middle Marker Log</h2>
-        <form action="/submit/middlemarker" method="POST">
-          <label for="date">Date:</label>
-          <input type="datetime-local" id="date" name="date" required><br>
-          <label for="tx1">TX1:</label>
-          <select id="tx1" name="tx1" required>
-            <option value="ON">ON</option>
-            <option value="ON LOAD">ON LOAD</option>
-            <option value="ON ANTENNA">ON ANTENNA</option>
-            <option value="OFF">OFF</option>
-          </select><br>
-          <label for="tx2">TX2:</label>
-          <select id="tx2" name="tx2" required>
-            <option value="ON">ON</option>
-            <option value="ON LOAD">ON LOAD</option>
-            <option value="ON ANTENNA">ON ANTENNA</option>
-            <option value="OFF">OFF</option>
-          </select><br>
-          <label for="battery1">Battery 1:</label>
-          <input type="number" step="0.01" id="battery1" name="battery1" required><br>
-          <label for="battery2">Battery 2:</label>
-          <input type="number" step="0.01" id="battery2" name="battery2" required><br>
-          <label for="temp">Temp:</label>
-          <input type="number" step="0.01" id="temp" name="temp" required><br>
-          <label for="technician">Technician:</label>
-          <input type="text" id="technician" name="technician" required><br>
-          <label for="note">Additional Note:</label>
-          <textarea id="note" name="note"></textarea><br>
-          <button type="submit">Submit</button>
-        </form>
-      </div>
-
-      <div id="selexLocalizerLog" class="log-page hidden">
-        <h2>Selex Localizer Log</h2>
-        <form action="/submit/selexlocalizer" method="POST">
-          <label for="date">Date:</label>
-          <input type="datetime-local" id="date" name="date" required><br>
-          <label for="tx1">TX1:</label>
-          <select id="tx1" name="tx1" required>
-            <option value="ON">ON</option>
-            <option value="ON LOAD">ON LOAD</option>
-            <option value="ON ANTENNA">ON ANTENNA</option>
-            <option value="OFF">OFF</option>
-          </select><br>
-          <label for="tx2">TX2:</label>
-          <select id="tx2" name="tx2" required>
-            <option value="ON">ON</option>
-            <option value="ON LOAD">ON LOAD</option>
-            <option value="ON ANTENNA">ON ANTENNA</option>
-            <option value="OFF">OFF</option>
-          </select><br>
-          <label for="battery1">Battery 1:</label>
-          <input type="number" step="0.01" id="battery1" name="battery1" required><br>
-          <label for="battery2">Battery 2:</label>
-          <input type="number" step="0.01" id="battery2" name="battery2" required><br>
-          <label for="temp">Temp:</label>
-          <input type="number" step="0.01" id="temp" name="temp" required><br>
-          <label for="technician">Technician:</label>
-          <input type="text" id="technician" name="technician" required><br>
-          <label for="note">Additional Note:</label>
-          <textarea id="note" name="note"></textarea><br>
-          <button type="submit">Submit</button>
-        </form>
-      </div>
-
-      <div id="selexGlidePathLog" class="log-page hidden">
-        <h2>Selex Glide Path Log</h2>
-        <form action="/submit/selexglidepath" method="POST">
-          <label for="date">Date:</label>
-          <input type="datetime-local" id="date" name="date" required><br>
-          <label for="tx1">TX1:</label>
-          <select id="tx1" name="tx1" required>
-            <option value="ON">ON</option>
-            <option value="ON LOAD">ON LOAD</option>
-            <option value="ON ANTENNA">ON ANTENNA</option>
-            <option value="OFF">OFF</option>
-          </select><br>
-          <label for="tx2">TX2:</label>
-          <select id="tx2" name="tx2" required>
-            <option value="ON">ON</option>
-            <option value="ON LOAD">ON LOAD</option>
-            <option value="ON ANTENNA">ON ANTENNA</option>
-            <option value="OFF">OFF</option>
-          </select><br>
-          <label for="battery1">Battery 1:</label>
-          <input type="number" step="0.01" id="battery1" name="battery1" required><br>
-          <label for="battery2">Battery 2:</label>
-          <input type="number" step="0.01" id="battery2" name="battery2" required><br>
-          <label for="temp">Temp:</label>
-          <input type="number" step="0.01" id="temp" name="temp" required><br>
-          <label for="technician">Technician:</label>
-          <input type="text" id="technician" name="technician" required><br>
-          <label for="note">Additional Note:</label>
-          <textarea id="note" name="note"></textarea><br>
-          <button type="submit">Submit</button>
-        </form>
-      </div>
-
-      <div id="selexMiddleMarkerLog" class="log-page hidden">
-        <h2>Selex Middle Marker Log</h2>
-        <form action="/submit/selexmiddlemarker" method="POST">
-          <label for="date">Date:</label>
-          <input type="datetime-local" id="date" name="date" required><br>
-          <label for="tx1">TX1:</label>
-          <select id="tx1" name="tx1" required>
-            <option value="ON">ON</option>
-            <option value="ON LOAD">ON LOAD</option>
-            <option value="ON ANTENNA">ON ANTENNA</option>
-            <option value="OFF">OFF</option>
-          </select><br>
-          <label for="tx2">TX2:</label>
-          <select id="tx2" name="tx2" required>
-            <option value="ON">ON</option>
-            <option value="ON LOAD">ON LOAD</option>
-            <option value="ON ANTENNA">ON ANTENNA</option>
-            <option value="OFF">OFF</option>
-          </select><br>
-          <label for="battery1">Battery 1:</label>
-          <input type="number" step="0.01" id="battery1" name="battery1" required><br>
-          <label for="battery2">Battery 2:</label>
-          <input type="number" step="0.01" id="battery2" name="battery2" required><br>
-          <label for="temp">Temp:</label>
-          <input type="number" step="0.01" id="temp" name="temp" required><br>
-          <label for="technician">Technician:</label>
-          <input type="text" id="technician" name="technician" required><br>
-          <label for="note">Additional Note:</label>
-          <textarea id="note" name="note"></textarea><br>
-          <button type="submit">Submit</button>
-        </form>
-      </div>
+      <form action="/submit" method="POST">
+        <label for="date">Date:</label>
+        <input type="text" id="date" name="date"><br>
+        <label for="tx1">TX1:</label>
+        <select id="tx1" name="tx1">
+          <option value="ON">ON</option>
+          <option value="ON LOAD">ON LOAD</option>
+          <option value="ON ANTENNA">ON ANTENNA</option>
+          <option value="OFF">OFF</option>
+        </select><br>
+        <label for="tx2">TX2:</label>
+        <select id="tx2" name="tx2">
+          <option value="ON">ON</option>
+          <option value="ON LOAD">ON LOAD</option>
+          <option value="ON ANTENNA">ON ANTENNA</option>
+          <option value="OFF">OFF</option>
+        </select><br>
+        <label for="battery1">Battery 1:</label>
+        <input type="text" id="battery1" name="battery1"><br>
+        <label for="battery2">Battery 2:</label>
+        <input type="text" id="battery2" name="battery2"><br>
+        <label for="temp">Temp:</label>
+        <input type="text" id="temp" name="temp"><br>
+        <label for="technician">Technician:</label>
+        <input type="text" id="technician" name="technician"><br>
+        <label for="note">Additional Note:</label>
+        <textarea id="note" name="note"></textarea><br>
+        <button type="submit">Submit</button>
+      </form>
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>TX1</th>
+            <th>TX2</th>
+            <th>Battery 1</th>
+            <th>Battery 2</th>
+            <th>Temp</th>
+            <th>Technician</th>
+            <th>Note</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% logs.forEach(log => { %>
+            <tr>
+              <td><%= log.date %></td>
+              <td><%= log.tx1 %></td>
+              <td><%= log.tx2 %></td>
+              <td><%= log.battery1 %></td>
+              <td><%= log.battery2 %></td>
+              <td><%= log.temp %></td>
+              <td><%= log.technician %></td>
+              <td><%= log.note %></td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
     </div>
   </div>
-  <script>
-    document.getElementById('mopiensButton').addEventListener('click', function() {
-      document.getElementById('mopiensSubButtons').classList.toggle('hidden');
-    });
-    document.getElementById('selexButton').addEventListener('click', function() {
-      document.getElementById('selexSubButtons').classList.toggle('hidden');
-    });
-
-    document.getElementById('localizerButton').addEventListener('click', function() {
-      hideAllLogs();
-      document.getElementById('localizerLog').classList.remove('hidden');
-    });
-    document.getElementById('glidePathButton').addEventListener('click', function() {
-      hideAllLogs();
-      document.getElementById('glidePathLog').classList.remove('hidden');
-    });
-    document.getElementById('middleMarkerButton').addEventListener('click', function() {
-      hideAllLogs();
-      document.getElementById('middleMarkerLog').classList.remove('hidden');
-    });
-
-    document.getElementById('selexLocalizerButton').addEventListener('click', function() {
-      hideAllLogs();
-      document.getElementById('selexLocalizerLog').classList.remove('hidden');
-    });
-    document.getElementById('selexGlidePathButton').addEventListener('click', function() {
-      hideAllLogs();
-      document.getElementById('selexGlidePathLog').classList.remove('hidden');
-    });
-    document.getElementById('selexMiddleMarkerButton').addEventListener('click', function() {
-      hideAllLogs();
-      document.getElementById('selexMiddleMarkerLog').classList.remove('hidden');
-    });
-
-    function hideAllLogs() {
-      var logPages = document.getElementsByClassName('log-page');
-      for (var i = 0; i < logPages.length; i++) {
-        logPages[i].classList.add('hidden');
-      }
-    }
-  </script>
 </body>
 </html>

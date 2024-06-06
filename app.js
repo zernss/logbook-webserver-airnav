@@ -5,19 +5,15 @@ const cookieParser = require('cookie-parser');
 const path = require('path');
 
 const app = express();
-const PORT = 1025;
+const PORT = 3001;
 
 // Middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-// Set EJS as the view engine
-app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views'));
-
-// Serve static files from the public directory
-app.use(express.static(path.join(__dirname, 'public', 'css')));
+// Serve static HTML files
+app.use(express.static(path.join(__dirname, 'public')));
 
 // MongoDB Connection
 const mongoURI = 'mongodb://localhost:27017/localizer';
@@ -44,7 +40,7 @@ const MopiensMiddleMarker = mongoose.model('MopiensMiddleMarker', formSchema);
 
 // Serve login page
 app.get('/', (req, res) => {
-    res.render('login');
+    res.sendFile(path.join(__dirname, 'views', 'login.ejs'));
 });
 
 // Handle login
@@ -59,11 +55,7 @@ app.post('/login', (req, res) => {
 
 // Serve main page
 app.get('/main', (req, res) => {
-    res.render('main');
-});
-
-app.get('/index', (req, res) => {
-    res.render('main');
+    res.sendFile(path.join(__dirname, 'views', 'main.ejs'));
 });
 
 // Routes for submitting data
