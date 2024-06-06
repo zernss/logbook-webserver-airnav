@@ -12,7 +12,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-// Serve static HTML files
+// Set EJS as the view engine
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
+
+// Serve static files from the public directory
 app.use(express.static(path.join(__dirname, 'public')));
 
 // MongoDB Connection
@@ -26,6 +30,7 @@ mongoose.connect(mongoURI, {
 
 // Define schemas and models
 const formSchema = new mongoose.Schema({
+    // Define schema fields
     name: String,
     age: Number,
     // add other fields as necessary
@@ -40,7 +45,7 @@ const MopiensMiddleMarker = mongoose.model('MopiensMiddleMarker', formSchema);
 
 // Serve login page
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'views', 'login.ejs'));
+    res.render('login');
 });
 
 // Handle login
@@ -55,10 +60,35 @@ app.post('/login', (req, res) => {
 
 // Serve main page
 app.get('/main', (req, res) => {
-    res.sendFile(path.join(__dirname, 'views', 'main.ejs'));
+    res.render('main');
 });
 
-// Routes for submitting data
+// Serve form pages
+app.get('/submit/selexlocalizer', (req, res) => {
+    res.render('selexLocalizer');
+});
+
+app.get('/submit/selexglidepath', (req, res) => {
+    res.render('selexGlidePath');
+});
+
+app.get('/submit/selexmiddlemarker', (req, res) => {
+    res.render('selexMiddleMarker');
+});
+
+app.get('/submit/mopienslocalizer', (req, res) => {
+    res.render('mopiensLocalizer');
+});
+
+app.get('/submit/mopiensglidepath', (req, res) => {
+    res.render('mopiensGlidePath');
+});
+
+app.get('/submit/mopiensmiddlemarker', (req, res) => {
+    res.render('mopiensMiddleMarker');
+});
+
+// Routes for form submissions
 app.post('/submit/selexlocalizer', async (req, res) => {
     const newEntry = new SelexLocalizer(req.body);
     try {
@@ -88,7 +118,6 @@ app.post('/submit/selexmiddlemarker', async (req, res) => {
         res.status(500).send('Error submitting data');
     }
 });
-
 app.post('/submit/mopienslocalizer', async (req, res) => {
     const newEntry = new MopiensLocalizer(req.body);
     try {
