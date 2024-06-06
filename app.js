@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 // MongoDB Connection
-const mongoURI = 'mongodb://localhost:27017/localizer';
+const mongoURI = 'your_mongodb_connection_string';
 mongoose.connect(mongoURI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -35,6 +35,10 @@ const MopiensGlidePath = mongoose.model('MopiensGlidePath', formSchema);
 const MopiensMiddleMarker = mongoose.model('MopiensMiddleMarker', formSchema);
 
 // Routes
+app.get('/', (req, res) => {
+    res.send('Welcome to the Logbook Webserver');
+});
+
 app.post('/submit/selexlocalizer', async (req, res) => {
     const newEntry = new SelexLocalizer(req.body);
     try {
