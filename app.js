@@ -62,6 +62,10 @@ app.get('/main', (req, res) => {
     res.render('main');
 });
 
+app.get('/index', (req, res) => {
+    res.render('main');
+});
+
 // Routes for submitting data
 app.post('/submit/selexlocalizer', async (req, res) => {
     const newEntry = new SelexLocalizer(req.body);
