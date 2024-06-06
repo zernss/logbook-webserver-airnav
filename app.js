@@ -17,7 +17,7 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
 // Serve static files from the public directory
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public', 'css')));
 
 // MongoDB Connection
 const mongoURI = 'mongodb://localhost:27017/localizer';
@@ -113,4 +113,17 @@ app.post('/submit/mopiensglidepath', async (req, res) => {
     }
 });
 
-app.post('/submit/mopiens
+app.post('/submit/mopiensmiddlemarker', async (req, res) => {
+    const newEntry = new MopiensMiddleMarker(req.body);
+    try {
+        await newEntry.save();
+        res.status(200).send('Mopiens Middle Marker data submitted successfully');
+    } catch (err) {
+        res.status(500).send('Error submitting data');
+    }
+});
+
+// Starting the server
+app.listen(PORT, () => {
+    console.log(`Server is running on http://localhost:${PORT}`);
+});
