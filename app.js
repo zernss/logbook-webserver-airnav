@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 // MongoDB Connection
-const mongoURI = 'your_mongodb_connection_string';
+const mongoURI = 'mongodb://localhost:27017/localizer';
 mongoose.connect(mongoURI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
