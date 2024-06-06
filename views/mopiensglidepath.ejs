@@ -7,52 +7,30 @@
   <h1>Selex Localizer Form</h1>
   <form action="/submit/mopiensglidepath" method="POST">
     <label for="date">Date:</label>
-    <input type="text" id="date" name="date"><br>
+    <input type="date" id="date" name="date" required><br>
+
     <label for="tx1">TX1:</label>
-    <input type="text" id="tx1" name="tx1"><br>
+    <input type="text" id="tx1" name="tx1" required><br>
+
     <label for="tx2">TX2:</label>
-    <input type="text" id="tx2" name="tx2"><br>
+    <input type="text" id="tx2" name="tx2" required><br>
+
     <label for="battery1">Battery 1:</label>
-    <input type="text" id="battery1" name="battery1"><br>
-    <label for="battery2">Battery 2:</label>
-    <input type="text" id="battery2" name="battery2"><br>
-    <label for="temp">Temp:</label>
-    <input type="text" id="temp" name="temp"><br>
+    <input type="number" id="battery1" name="battery1" required><br>
+
+    <label for="battery2">Battery 2:</label>    
+    <input type="number" id="battery2" name="battery2" required><br>
+
+    <label for="temp">Temperature:</label>
+    <input type="number" id="temp" name="temp" required><br>
+
     <label for="technician">Technician:</label>
-    <input type="text" id="technician" name="technician"><br>
-    <label for="note">Additional Note:</label>
+    <input type="text" id="technician" name="technician" required><br>
+
+    <label for="note">Note:</label>
     <textarea id="note" name="note"></textarea><br>
+
     <button type="submit">Submit</button>
   </form>
-  <table>
-    <thead>
-      <tr>
-        <th>Date</th>
-        <th>TX1</th>
-        <th>TX2</th>
-        <th>Battery 1</th>
-        <th>Battery 2</th>
-        <th>Temp</th>
-        <th>Technician</th>
-        <th>Note</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% logs.forEach(log => { %>
-        <tr>
-          <td><%= log.date %></td>
-          <td><%= log.tx1 %></td>
-          <td><%= log.tx2 %></td>
-          <td><%= log.battery1 %></td>
-          <td><%= log.battery2 %></td>
-          <td><%= log.temp %></td>
-          <td><%= log.technician %></td>
-          <td><%= log.note %></td>
-        </tr>
-      <% }) %>
-    </tbody>
-  </table>
-</div>
-</div>
 </body>
 </html>

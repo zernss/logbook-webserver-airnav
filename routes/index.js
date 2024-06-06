@@ -7,6 +7,13 @@ router.get('/submit/selexlocalizer', function(req, res, next) {
   res.render('form', { title: 'Selex Localizer', formAction: '/submit/selexlocalizer' });
 });
 
+router.post('/submit/selexlocalizer', async (req, res) => {
+  const { date, tx1, tx2, battery1, battery2, temp, technician, note } = req.body;
+  const log = new Log({ date, tx1, tx2, battery1, battery2, temp, technician, note });
+  await log.save();
+  res.redirect('/main');
+});
+
 router.get('/submit/selexglidepath', function(req, res, next) {
   res.render('form', { title: 'Selex Glide Path', formAction: '/submit/selexglidepath' });
 });
