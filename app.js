@@ -40,7 +40,7 @@ const MopiensMiddleMarker = mongoose.model('MopiensMiddleMarker', formSchema);
 
 // Serve login page
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'login.html'));
+    res.sendFile(path.join(__dirname, 'views', 'login.ejs'));
 });
 
 // Handle login
@@ -55,7 +55,7 @@ app.post('/login', (req, res) => {
 
 // Serve main page
 app.get('/main', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'main.html'));
+    res.sendFile(path.join(__dirname, 'views', 'main.ejs'));
 });
 
 // Routes for submitting data
